@@ -67,7 +67,7 @@ def run_simulation(num_simulations=1, spins=1000):
         median_balance = statistics.median(final_balances)
         total_balance = sum(final_balances)
         
-        print(f"\nAfter {num_simulations} simulations:")
+        print(f"\nAfter {num_simulations} simulations and {spins} spins :")
         print(f"Average final balance: €{average_balance:.2f}")
         print(f"Median final balance: €{median_balance:.2f}")
         print(f"Minimum final balance: €{min_balance:.2f}")
@@ -77,4 +77,4 @@ def run_simulation(num_simulations=1, spins=1000):
     return final_balances
 
 # Run the simulation
-final_balances = run_simulation(num_simulations=10000, spins=100)
+final_balances = run_simulation(num_simulations=100, spins=100)
