@@ -51,20 +51,30 @@ def run_simulation(num_simulations=1, spins=1000):
         history, final_balance = fibonacci_bet(starting_bet, max_bet, spins, dozen_choice)
         final_balances.append(final_balance)
 
-    # Analysis including median
+        # If running only one simulation, print its history
+        if num_simulations == 1:
+            print(f"Simulation {sim_num + 1}:")
+            for record in history:
+                spin, bet, result, win, balance = record
+                print(f"Spin {spin}: Bet €{bet:.2f}, Result: {result}, Win: {win}, Balance: €{balance:.2f}")
+            print(f"\nFinal balance for simulation {sim_num + 1}: €{final_balance:.2f}\n")
+
+    # Analysis including median for multiple simulations
     if num_simulations > 1:
         average_balance = sum(final_balances) / num_simulations
         min_balance = min(final_balances)
         max_balance = max(final_balances)
         median_balance = statistics.median(final_balances)
+        total_balance = sum(final_balances)
         
-        print(f"\nAfter {num_simulations} simulation(s):")
+        print(f"\nAfter {num_simulations} simulations:")
         print(f"Average final balance: €{average_balance:.2f}")
+        print(f"Median final balance: €{median_balance:.2f}")
         print(f"Minimum final balance: €{min_balance:.2f}")
         print(f"Maximum final balance: €{max_balance:.2f}")
-        print(f"Median final balance: €{median_balance:.2f}")
+        print(f"Total final balance: €{total_balance:.2f}")
 
     return final_balances
 
-# Run 50 simulations for 100 spins
-final_balances = run_simulation(num_simulations=50, spins=100)
+# Run the simulation
+final_balances = run_simulation(num_simulations=10000, spins=100)
